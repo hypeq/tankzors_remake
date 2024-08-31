@@ -26,7 +26,7 @@ void initVideo(void)
 
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
 
-	prog.renderer = SDL_CreateRenderer(prog.window, -1, SDL_RENDERER_ACCELERATED);
+	prog.renderer = SDL_CreateRenderer(prog.window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
 	if(!prog.renderer)
 	{
