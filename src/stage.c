@@ -18,30 +18,30 @@ void fire(struct Entity **bullet, struct Entity *e){
           bullet[i]->type = 3;
         }
         if(e->dir == 3){
-          bullet[i]->x = e->x + e->w / 2;
+          bullet[i]->x = e->x + e->w - 35;
           bullet[i]->y = e->y;
           bullet[i]->dx = -5;bullet[i]->dy = 0;
           bullet[i]->cur_spr = 1;
           bullet[i]->dir = 3;
         }
         else if(e->dir == 1){
-          bullet[i]->x = e->x + e->w / 2;
+          bullet[i]->x = e->x + e->w - 10;
           bullet[i]->y = e->y;
           bullet[i]->dx = 5;bullet[i]->dy = 0;
           bullet[i]->cur_spr = 3;
           bullet[i]->dir = 1;
         }
 
-        if(e->dir == 2){ /* Down */
+        if(e->dir == 2){
           bullet[i]->x = e->x;
-          bullet[i]->y = e->y + e->h / 2;
+          bullet[i]->y = e->y + e->h - 10;
           bullet[i]->dx = 0;bullet[i]->dy = 5;
           bullet[i]->cur_spr = 2;
           bullet[i]->dir = 2;
         }
-        else if(e->dir == 0){ /* Up */
+        else if(e->dir == 0){
           bullet[i]->x = e->x;
-          bullet[i]->y = e->y + e->h / 2;
+          bullet[i]->y = e->y + e->h - 35;
           bullet[i]->dx = 0;bullet[i]->dy = -5;
           bullet[i]->cur_spr = 0;
           bullet[i]->dir = 0;
