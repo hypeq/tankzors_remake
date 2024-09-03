@@ -17,7 +17,7 @@ int initMap()
     SDL_Color green = {0, 255, 0, 255};
     SDL_Texture *fps_texture = NULL;
     SDL_Rect fps_rect = {10, 10, 0, 0};
-    TTF_Font *font = TTF_OpenFont("textures/OpenSans_Regular.ttf", 18);
+    TTF_Font *font = TTF_OpenFont("fonts/OpenSans_Regular.ttf", 18);
 	for(i=0;i<ENTITY_MAX;i++)
 	{
 		entity[i] = malloc(sizeof(struct Entity));

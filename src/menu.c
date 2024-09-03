@@ -3,7 +3,7 @@
 int showMenu()
 {
     SDL_Texture* backgroundTexture = IMG_LoadTexture(prog.renderer, "textures/menu_pict_fade.png");
-    TTF_Font* font = TTF_OpenFont("textures/RobotoCondensed_Regular.ttf", 24);
+    TTF_Font* font = TTF_OpenFont("fonts/RobotoCondensed_Regular.ttf", 24);
 
     SDL_Color textColor = { 255, 0, 0, 255 };
     SDL_Color buttonColor = { 50, 50, 50, 255 };
