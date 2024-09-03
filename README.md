@@ -1,6 +1,6 @@
-## Building and running
+# Building and running
 
-# Linux:
+## Linux:
 **1. Install depencies:**  
   
 Arch-based:
