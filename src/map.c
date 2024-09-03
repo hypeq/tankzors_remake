@@ -17,7 +17,7 @@ int initMap()
     SDL_Color green = {0, 255, 0, 255};
     SDL_Texture *fps_texture = NULL;
     SDL_Rect fps_rect = {10, 10, 0, 0};
-    TTF_Font *font = TTF_OpenFont("fonts/OpenSans_Regular.ttf", 18);
+    TTF_Font *font = TTF_OpenFont("assets/fonts/OpenSans_Regular.ttf", 18);
 	for(i=0;i<ENTITY_MAX;i++)
 	{
 		entity[i] = malloc(sizeof(struct Entity));
@@ -32,12 +32,12 @@ int initMap()
 		hud[i]->is=0;
  	}
 
-	spritesheet = loadTexture("textures/walls.png");
-	light = loadTexture("textures/light.png");
-    rings = loadTexture("textures/rings.png");
-	bullets = loadTexture("textures/bullets.png");
-	ground = loadTexture("textures/ground.png");
-	walls = loadTexture("textures/walls.png");
+	spritesheet = loadTexture("assets/textures/walls.png");
+	light = loadTexture("assets/textures/light.png");
+    rings = loadTexture("assets/textures/rings.png");
+	bullets = loadTexture("assets/textures/bullets.png");
+	ground = loadTexture("assets/textures/ground.png");
+	walls = loadTexture("assets/walls.png");
 	i_map = map_x * map_y;
 
 	makeGrid(map,map_x,map_y,0);
@@ -192,7 +192,7 @@ void initPlayer(void)
 			player->w = CELL_SIZE;
 			player->h = CELL_SIZE;
 			player->dx = 1;player->dy = player->dx;
-			player->texture = loadTexture("textures/light.png");
+			player->texture = loadTexture("assets/textures/light.png");
 			player->id = 0;
 			player->busy = 0;
 			player->input = 0;

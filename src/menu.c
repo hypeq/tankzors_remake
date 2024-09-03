@@ -2,8 +2,8 @@
 
 int showMenu()
 {
-    SDL_Texture* backgroundTexture = IMG_LoadTexture(prog.renderer, "textures/menu_pict_fade.png");
-    TTF_Font* font = TTF_OpenFont("fonts/RobotoCondensed_Regular.ttf", 24);
+    SDL_Texture* backgroundTexture = IMG_LoadTexture(prog.renderer, "assets/textures/menu_pict_fade.png");
+    TTF_Font* font = TTF_OpenFont("assets/fonts/RobotoCondensed_Regular.ttf", 24);
 
     SDL_Color textColor = { 255, 0, 0, 255 };
     SDL_Color buttonColor = { 50, 50, 50, 255 };
@@ -14,7 +14,7 @@ int showMenu()
     SDL_Texture* message1, * message2;
     SDL_Rect textRect1, textRect2;
 
-    Mix_Music *music = Mix_LoadMUS("music/intro.ogg");
+    Mix_Music *music = Mix_LoadMUS("assets/music/intro.ogg");
     if(!music)
     {
         printf("Mix_LoadMUS error: %s\n", Mix_GetError());

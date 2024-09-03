@@ -18,11 +18,11 @@ void initAudio(void)
 
 static void loadSound(void)
 {
-	sound[0] = Mix_LoadWAV("sounds/");
-	sound[1] = Mix_LoadWAV("sounds/");
-	sound[2] = Mix_LoadWAV("sounds/shell_default.ogg");
-	sound[3] = Mix_LoadWAV("sounds/");
-	sound[4] = Mix_LoadWAV("sounds/hit_wall_def01.ogg");
+	sound[0] = Mix_LoadWAV("assets/sounds/");
+	sound[1] = Mix_LoadWAV("assets/sounds/");
+	sound[2] = Mix_LoadWAV("assets/sounds/shell_default.ogg");
+	sound[3] = Mix_LoadWAV("assets/sounds/");
+	sound[4] = Mix_LoadWAV("assets/sounds/hit_wall_def01.ogg");
 }
 
 void playSound(unsigned short int id)
@@ -37,7 +37,7 @@ void playMusic()
         srand(time(NULL));
         int track = rand() % 17 + 1;
         char filename[256];
-        snprintf(filename, sizeof(filename), "music/track%d.ogg", track);
+        snprintf(filename, sizeof(filename), "assets/music/track%d.ogg", track);
         Mix_Music *music = Mix_LoadMUS(filename);
         if(!music)
         {

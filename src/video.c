@@ -20,7 +20,7 @@ void initVideo(void)
         	exit(1);
 	}
 
-	SDL_Surface *icon = IMG_Load("textures/icon.png");
+	SDL_Surface *icon = IMG_Load("assets/textures/icon.png");
 	SDL_SetWindowIcon(prog.window, icon);
 	SDL_FreeSurface(icon);
 
