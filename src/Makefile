@@ -3,6 +3,11 @@ LFLAGS = -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 OBJS = $(patsubst %.c,build/%.o,$(wildcard *.c))
 TARGET = ../tankzors
 
+ifeq ($(OS),Windows_NT))
+	CFLAGS += `sdl2-config --cflags`
+	LFLAGS += `sdl2-config --libs`
+endif
+
 all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CC) $(OBJS) $(LFLAGS) -o $@
