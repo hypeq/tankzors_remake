@@ -9,7 +9,7 @@ pkg_search_module(SDL2_TTF REQUIRED IMPORTED_TARGET SDL2_ttf)
 pkg_search_module(SDL2_IMAGE REQUIRED IMPORTED_TARGET SDL2_image)
 pkg_search_module(SDL2_MIXER REQUIRED IMPORTED_TARGET SDL2_mixer)
 
-aux_source_directory(./src SOURCES)
+aux_source_directory(. SOURCES)
 
 
 add_executable(tankzors ${SOURCES})
