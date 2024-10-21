@@ -24,7 +24,7 @@ void initVideo(void)
 	SDL_SetWindowIcon(prog.window, icon);
 	SDL_FreeSurface(icon);
 
-	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+//	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
 
 	prog.renderer = SDL_CreateRenderer(prog.window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
