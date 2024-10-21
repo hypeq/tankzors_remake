@@ -1,6 +1,6 @@
 # Telegram
-t.me/tankzors
-t.me/tankzors_community
+https://t.me/tankzors
+https://t.me/tankzors_community
 
 # Screenshots
 ![image](https://github.com/user-attachments/assets/4f7c2035-8499-4e21-9571-dcb74a05df65)
