@@ -20,14 +20,14 @@ target_link_directories(tankzors PRIVATE
                         ${SDL2_IMAGE_LIBRARY_DIRS}
                         ${SDL2_MIXER_LIBRARY_DIRS}
                         )
-                        
+
 target_compile_options(tankzors PRIVATE -std=c99 -O2 -Wall -Wextra -Wshadow -Wshadow -Wvla -Wpointer-arith -Walloca -Wduplicated-cond -Wtrampolines -Wlarger-than=1048576 -Wframe-larger-than=32768 -Wdouble-promotion -Werror=return-type -Wno-unknown-warning-option)
 
 
 
 set_target_properties(tankzors PROPERTIES LINK_FLAGS_RELEASE -s)
 
-target_link_libraries(tankzors 
+target_link_libraries(tankzors
                           ${SDL2_LIBRARIES}
                           ${SDL2_TTF_LIBRARIES}
                           ${SDL2_IMAGE_LIBRARIES}
