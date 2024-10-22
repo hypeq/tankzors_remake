@@ -32,5 +32,3 @@ target_link_libraries(tankzors
                           ${SDL2_TTF_LIBRARIES}
                           ${SDL2_IMAGE_LIBRARIES}
                           ${SDL2_MIXER_LIBRARIES})
-
-file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
