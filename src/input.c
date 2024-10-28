@@ -20,39 +20,39 @@ void doPlayer(__attribute__((unused)) struct Hud **hud, struct Entity **ent, str
 {
   if(keyboard[SDL_SCANCODE_RIGHT])
 {
-    if(player->dir == 1 && !player->busy)
+    if(player->dir == RIGHT && !player->busy)
 {
       player->busy = 1;
     }
     else if(!player->busy)
 {
-      player->dir = 1;
+      player->dir = RIGHT;
     }
   }
 
   if(keyboard[SDL_SCANCODE_LEFT])
 {
     use_r_table();
-    if(player->dir == 3 && !player->busy)
+    if(player->dir == LEFT && !player->busy)
 {
       player->busy = 1;
     }
     else if(!player->busy)
 {
-      player->dir = 3;
+      player->dir = LEFT;
     } 
   }
 
   if(keyboard[SDL_SCANCODE_DOWN])
 {
     use_r_table();
-    if(player->dir == 2 && !player->busy)
+    if(player->dir == DOWN && !player->busy)
 {
       player->busy = 1;
     }
     else if(!player->busy)
 {
-      player->dir = 2;
+      player->dir = DOWN;
     }
   }
 
@@ -60,12 +60,12 @@ void doPlayer(__attribute__((unused)) struct Hud **hud, struct Entity **ent, str
 {
       player->input = 1;
       use_r_table();
-      if(player->dir == 0 && !player->busy)
+      if(player->dir == UP && !player->busy)
 {
         player->busy = 1;
       }
      else if(!player->busy){
-        player->dir = 0;
+        player->dir = UP;
       }
   }
   if(keyboard[SDL_SCANCODE_Z])

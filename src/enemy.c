@@ -29,9 +29,8 @@ void doEnemies(struct Entity **e, Cell* cell, int s, __attribute__((unused)) SDL
 
   for(int i = 0;i<ENTITY_MAX;i++){
     if(e[i]->type == 1){
-      if(e[i]->dir == 0){
-	if(!entityCollideWorld(cell,s, e[i]->x,e[i]->y - e[i]->dy,e[i]->w,e[i]->h) &&
-		      !entityCollideEntity(e,e[i])){
+      if(e[i]->dir == UP){
+	if(!entityCollideWorld(cell,s, e[i]->x,e[i]->y - e[i]->dy,e[i]->w,e[i]->h)){
           move(e[i]);
 	  e[i]->busy = 1;
           playSound(1);
@@ -42,10 +41,9 @@ void doEnemies(struct Entity **e, Cell* cell, int s, __attribute__((unused)) SDL
         }
       }
 
-      if(e[i]->dir == 2){
+      if(e[i]->dir == DOWN){
         if(!entityCollideWorld(cell,s,
-          		      e[i]->x,e[i]->y + e[i]->dy,e[i]->w,e[i]->h) &&
-		      !entityCollideEntity(e,e[i])){
+          		      e[i]->x,e[i]->y + e[i]->dy,e[i]->w,e[i]->h)){
           move(e[i]);
 	  e[i]->busy = 1;
           playSound(1);
@@ -55,10 +53,9 @@ void doEnemies(struct Entity **e, Cell* cell, int s, __attribute__((unused)) SDL
 	  Mix_HaltChannel(2);
         }
       }
-      if(e[i]->dir == 1){
+      if(e[i]->dir == RIGHT){
         if(!entityCollideWorld(cell,s,
-          		      e[i]->x + e[i]->dx,e[i]->y,e[i]->w,e[i]->h) &&
-		      !entityCollideEntity(e,e[i])){
+          		      e[i]->x + e[i]->dx,e[i]->y,e[i]->w,e[i]->h)){
           move(e[i]);
 	  e[i]->busy = 1;
           playSound(1);
@@ -70,10 +67,9 @@ void doEnemies(struct Entity **e, Cell* cell, int s, __attribute__((unused)) SDL
       }
 
 
-      if(e[i]->dir == 3){
+      if(e[i]->dir == LEFT){
         if(!entityCollideWorld(cell,s,
-          		      e[i]->x - e[i]->dx,e[i]->y,e[i]->w,e[i]->h) &&
-		      !entityCollideEntity(e,e[i])){
+          		      e[i]->x - e[i]->dx,e[i]->y,e[i]->w,e[i]->h)){
           move(e[i]);
 	  e[i]->busy = 1;
           playSound(1);
@@ -101,6 +97,6 @@ void doEnemies(struct Entity **e, Cell* cell, int s, __attribute__((unused)) SDL
 
 
 void changeDir(struct Entity *e){
-  if(!e->dir || e->dir == 2) e->dir = use_r_table() > 125 ? 1:3;
-  else if(e->dir == 1 || e->dir == 3) e->dir = use_r_table() > 125 ? 0:2;
+  if(e->dir == UP || e->dir == DOWN) e->dir = use_r_table() > 125 ? 1:3;
+  else if(e->dir == RIGHT || e->dir == LEFT) e->dir = use_r_table() > 125 ? 0:2;
 }

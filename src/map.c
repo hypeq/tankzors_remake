@@ -181,7 +181,7 @@ void initPlayer(void)
 	{
 		if(!entity[i]->is)
 		{
-			player->dir = 0;
+			player->dir = UP;
 			player->reload = 0;
 			player->i_reload = 60;
 			player->moving = 0;

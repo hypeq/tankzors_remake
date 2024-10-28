@@ -2,7 +2,6 @@
 extern short int enemy_count;
 extern int id;
 int entityCollideWorld(Cell*,int,int,int,int,int);
-int entityCollideEntity(struct Entity **,struct Entity*);
 int use_r_table(void);
 void fire(struct Entity **, struct Entity*);
 void changeDir(struct Entity *e);
