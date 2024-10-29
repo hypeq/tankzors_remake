@@ -1,16 +1,24 @@
 #pragma once
-#define FPS 60
+
 #define TABLE 255
 #define CELL_SIZE 24
 #define ENTITY_MAX 100
 #define MAX_KEYBOARD_KEYS 350
 #define MAX_SND_CHANNELS 16
+
 #define MAX(x, y) (((x) > (y)) ? (x) : (y))
 #define MIN(x, y) (((x) < (y)) ? (x) : (y))
+
+#define UP 0
+#define DOWN 2
+#define RIGHT 1
+#define LEFT 3
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>

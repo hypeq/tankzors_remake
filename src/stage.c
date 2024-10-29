@@ -10,6 +10,7 @@ void fire(struct Entity **bullet, struct Entity *e){
         bullet[i]->hp = 1;
         bullet[i]->w = 24;
         bullet[i]->h = 24;
+	bullet[i]->alive_for = 0;
         if(!e->type){
           playSound(2);
           bullet[i]->type = 2;
@@ -17,34 +18,34 @@ void fire(struct Entity **bullet, struct Entity *e){
         else{
           bullet[i]->type = 3;
         }
-        if(e->dir == 3){
+        if(e->dir == LEFT){
           bullet[i]->x = e->x + e->w - 35;
           bullet[i]->y = e->y;
           bullet[i]->dx = -5;bullet[i]->dy = 0;
           bullet[i]->cur_spr = 1;
-          bullet[i]->dir = 3;
+          bullet[i]->dir = LEFT;
         }
-        else if(e->dir == 1){
+        else if(e->dir == RIGHT){
           bullet[i]->x = e->x + e->w - 10;
           bullet[i]->y = e->y;
           bullet[i]->dx = 5;bullet[i]->dy = 0;
           bullet[i]->cur_spr = 3;
-          bullet[i]->dir = 1;
+          bullet[i]->dir = RIGHT;
         }
 
-        if(e->dir == 2){
+        if(e->dir == DOWN){
           bullet[i]->x = e->x;
           bullet[i]->y = e->y + e->h - 10;
           bullet[i]->dx = 0;bullet[i]->dy = 5;
           bullet[i]->cur_spr = 2;
-          bullet[i]->dir = 2;
+          bullet[i]->dir = DOWN;
         }
-        else if(e->dir == 0){
+        else if(e->dir == UP){
           bullet[i]->x = e->x;
           bullet[i]->y = e->y + e->h - 35;
           bullet[i]->dx = 0;bullet[i]->dy = -5;
           bullet[i]->cur_spr = 0;
-          bullet[i]->dir = 0;
+          bullet[i]->dir = UP;
         }
 	bullet[i]->is = 1;
 	break;
@@ -58,7 +59,8 @@ void doBullets(struct Entity **b){
     if(b[ii]->is && (b[ii]->type == 2 ||b[ii]->type == 3)){
       b[ii]->x += b[ii]->dx;
       b[ii]->y += b[ii]->dy;
-      if(b[ii]->x > 496 || b[ii]->x < 80 || b[ii]->y < 30 || b[ii]->y > 450 || b[ii]->hp < 1){
+      b[ii]->alive_for++;
+      if(b[ii]->alive_for > 240 || b[ii]->hp < 1){
         spawnExplosion(b,b[ii],0);
         playSound(4);
 	b[ii]->is = 0;
@@ -103,7 +105,7 @@ void doExplosion(struct Entity **ex){
 
 void move(Cell *cell,struct Entity *ent){
   if(ent->busy){
-    if(!ent->dir && ent->cur_spr == 8 && !entityCollideWorld(cell, 400,ent->x, ent->y - 1, ent->w, ent->h)){
+    if(ent->dir == UP && ent->cur_spr == 8 && !entityCollideWorld(cell, 400,ent->x, ent->y - 1, ent->w, ent->h)){
       if(!ent->move_set){
         ent->dest = ent->y - CELL_SIZE;
         ent->move_set=1;
@@ -115,7 +117,7 @@ void move(Cell *cell,struct Entity *ent){
         ent->move_set = 0;
       }
     }
-    else if(ent->dir == 2  && ent->cur_spr == 0 && !entityCollideWorld(cell, 400,ent->x, ent->y + 1, ent->w, ent->h)){
+    else if(ent->dir == DOWN  && ent->cur_spr == 0 && !entityCollideWorld(cell, 400,ent->x, ent->y + 1, ent->w, ent->h)){
       if(!ent->move_set){
         ent->dest = ent->y + CELL_SIZE;
         ent->move_set=1;
@@ -127,7 +129,7 @@ void move(Cell *cell,struct Entity *ent){
         ent->move_set = 0;
       }
     }
-    else if(ent->dir == 3 && ent->cur_spr == 4 && !entityCollideWorld(cell, 400,ent->x - 1, ent->y, ent->w, ent->h)){
+    else if(ent->dir == LEFT && ent->cur_spr == 4 && !entityCollideWorld(cell, 400,ent->x - 1, ent->y, ent->w, ent->h)){
 
       if(!ent->move_set){ 
         ent->dest = ent->x - CELL_SIZE;
@@ -139,7 +141,7 @@ void move(Cell *cell,struct Entity *ent){
         ent->move_set = 0;
       }
     }
-    else if(ent->dir == 1 && ent->cur_spr == 12 && !entityCollideWorld(cell, 400,ent->x + 1, ent->y, ent->w, ent->h)){
+    else if(ent->dir == RIGHT && ent->cur_spr == 12 && !entityCollideWorld(cell, 400,ent->x + 1, ent->y, ent->w, ent->h)){
       if(!ent->move_set){
         ent->dest = ent->x + CELL_SIZE;
         ent->move_set=1;
@@ -155,18 +157,18 @@ void move(Cell *cell,struct Entity *ent){
 }
 
 void handleSpr(struct Entity *ent){
-  if(!ent->dir && ent->cur_spr != 8){
+  if(ent->dir == UP && ent->cur_spr != 8){
     if(ent->cur_spr < 8) ent->cur_spr++;
     if(ent->cur_spr > 8) ent->cur_spr--;
   }
-  else if(ent->dir == 2 && ent->cur_spr != 0){
+  else if(ent->dir == DOWN && ent->cur_spr != 0){
     if(ent->cur_spr > 8){
       if(ent->cur_spr == 15) ent->cur_spr = 0;
       else ent->cur_spr++;
     }
     else if(ent->cur_spr > 0) ent->cur_spr--;
   }
-  else if(ent->dir == 3 && ent->cur_spr != 4){
+  else if(ent->dir == LEFT && ent->cur_spr != 4){
     if(ent->cur_spr > 12){
       if(ent->cur_spr == 15) ent->cur_spr = 0;
       else ent->cur_spr++;
@@ -174,7 +176,7 @@ void handleSpr(struct Entity *ent){
     else if(ent->cur_spr > 4) ent->cur_spr--;
     else ent->cur_spr++;
   }
-  else if(ent->dir == 1 && ent->cur_spr != 12){
+  else if(ent->dir == RIGHT && ent->cur_spr != 12){
     if(ent->cur_spr > 12)ent->cur_spr--;
     else if(ent->cur_spr > 4) ent->cur_spr++;
     else{
@@ -223,6 +225,8 @@ int entityCollideWorld(Cell cell[], int s,int x, int y, int w, int h){
   return r;
 }
 
+/*
+// Не для этих танчиков
 int entityCollideEntity(struct Entity **ent,struct Entity *e){
   int r = 0;
   for(int ii = 0;ii<ENTITY_MAX;ii++){
@@ -269,7 +273,7 @@ int entityCollideEntity(struct Entity **ent,struct Entity *e){
   }
   return r;
 }
-
+*/
 
 void bulletCollideEntity(struct Entity **e){
   for(int ii = 0;ii<ENTITY_MAX;ii++){
